@@ -9,7 +9,8 @@
 </head>
 <body>
   <nav>
-    <a href="">All Anime</a>
+    <a href="/" <%- title === 'All Movies' ? 'class="active"' : '' %>>HOME PAGE</a>
+    <a href="/animes" <%- title === 'All Movies' ? 'class="active"' : '' %>>ALL ANIME</a>
     <% if (user) { %>
         <a href="/logout">LOG OUT</a>
     <% } else { %>

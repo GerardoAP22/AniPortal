@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Season</th>
+            <th>Release<br>Year</th>
+            <th>Genre</th>
+            <th>Currently<br>Airing</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% animes.forEach(function(ani) { %>
+            <tr>
+                <td><%= ani.title %></td>
+                <td><%= ani.releaseSeason %></td>
+                <td><%= ani.releaseYear %></td>
+                <td><%= ani.genre %></td>
+                <td><%= ani.currentlyAiring ? 'Yes' : 'No' %></td>
+                <td><a href="/animes/<%= ani._id %>">DETAILS</a></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<%- include('../partials/footer') %>
