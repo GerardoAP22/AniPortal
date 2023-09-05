@@ -39,13 +39,13 @@ My app is called AniPortal. It's a site that lists a bunch of anime. Users who l
 Do not neglect to plan, you will thank yourself later for being proactive!
 | Day        |   | Task                               | Blockers | Notes/ Thoughts |
 |------------|---|------------------------------------|----------|-----------------|
-| Thursday   |   | Add OAuth.              |          |                 |
+| Thursday   |   | Add OAuth.                         |          |                 |
 | Friday     |   | Create Nav Bar and add links       |          |                 |
-| Saturday   |   | Add Ability to add anime to list   |          |                 |
-| Sunday     |   | Add studio relationship            |          |                 |
-| Monday     |   | Add styling                        |          |                 |
-| Tuesday    |   | Finalize MVP                       |          |                 |
-| Wedenesday |   | Work on stretch goals              |          |                 |
-| Thursday   |   | Work on icebox items if applicable |          |                 |
+| Saturday   |   | Create Details page                |          |                 |
+| Sunday     |   | Break                              |          |                 |
+| Monday     |   | Break                              |          |                 |
+| Tuesday    |   | Seeding for API                    |          |                 |
+| Wedenesday |   | Create review modal & add to my lis|          |                 |
+| Thursday   |   | Add Styling on website             |          |                 |
 | Friday     |   | Work on icebox items               |          |                 |
 | Monday     |   | Presentation Day!                  |          |                 |
