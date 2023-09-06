@@ -13,6 +13,7 @@ router.get('/', async function (req, res, next) {
             const animeData = apiData.data.map(item => {
                 const image = item.images.jpg.image_url;
                 const title = item.title;
+                const type = item.type;
                 const synopsis = item.synopsis;
                 const episodeCount = item.episodes;
                 const releaseSeason = item.season;
@@ -20,7 +21,7 @@ router.get('/', async function (req, res, next) {
                 const genre = item.genres.map(g => g.name); // Use map to create an array of genre names
                 const rating = item.rating;
                 const currentlyAiring = item.airing;
-                return { image, title, synopsis, episodeCount, releaseSeason, releaseYear, genre, rating, currentlyAiring };
+                return { image, title, type, synopsis, episodeCount, releaseSeason, releaseYear, genre, rating, currentlyAiring };
             });
 
             await Anime.deleteMany();
