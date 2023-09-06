@@ -12,7 +12,7 @@ router.get('/', async function (req, res, next) {
             const apiData = await response.json();
             const animeData = apiData.data.map(item => {
                 const image = item.images.jpg.image_url;
-                const title = item.title;
+                const title = (item.title_english !== null) ? item.title_english : item.title;
                 const type = item.type;
                 const synopsis = item.synopsis;
                 const episodeCount = item.episodes;
