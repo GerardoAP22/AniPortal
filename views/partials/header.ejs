@@ -9,10 +9,10 @@
 </head>
 <body>
   <nav>
-    <a href="/" <%- title === 'All Movies' ? 'class="active"' : '' %>>HOME PAGE</a>
-    <a href="/animes" <%- title === 'All Movies' ? 'class="active"' : '' %>>ALL ANIME</a>
+    <a href="/">HOME PAGE</a>
+    <a href="/animes">ALL ANIME</a>
     <% if (user) { %>
-        <a href="">MY LIST</a>
+        <a href="/users">MY LIST</a>
         <a href="/logout">LOG OUT</a>
     <% } else { %>
         <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>

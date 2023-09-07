@@ -1,13 +1,9 @@
 <%- include('../partials/header') %>
 
 <table>
-    <h3>Anime Search</h3>
-    <form action="">
-        <input type="text" id="searchInput" placeholder="Enter an anime title...">
-        <button id="searchButton">Search</button>
-    </form>
     <thead>
         <tr>
+            <th></th>
             <th>Title</th>
             <th>Season</th>
             <th>Release<br>Year</th>
@@ -17,8 +13,13 @@
         </tr>
     </thead>
     <tbody>
-        <% animes.forEach(function(ani) { %>
+        <% user.mylist.forEach(function(ani) { %>
             <tr>
+                <td>
+                    <form action="animes/<%= ani._id %>?_method=DELETE" method="POST">
+                        <button type="submit">REMOVE</button>
+                    </form>
+                </td>
                 <td><%= ani.title %></td>
                 <td><%= ani.releaseSeason %></td>
                 <td><%= ani.releaseYear %></td>

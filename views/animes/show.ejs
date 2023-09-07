@@ -18,10 +18,9 @@
     <div>Currently Airing: </div>
     <div><%= anime.currentlyAiring ? 'Yes' : 'No' %></div>
     <% if(user) { %>
-        <button>Add to MyList</button>
-        <!-- <form action="add-anilist-form" method="POST" action="/users/<%= anime._id %>/mylist">
-            <input type="submit" value="Add to MyList">
-        </form> -->
+        <form action="/animes/<%= anime._id %>" method="POST">
+            <button type="submit" value="add">Add to My List</button>
+        </form>
     <% } %>
 </section>
 
