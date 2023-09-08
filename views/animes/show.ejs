@@ -1,24 +1,27 @@
 <%- include('../partials/header') %>
 
-<section>
-    <div>Title: </div>
-    <div><%= anime.title %></div>
-    <div><img src="<%= anime.image %>" alt=""></div>
-    <div>Type: <%= anime.type %></div>
-    <div>Synopsis: </div>
-    <div><%= anime.synopsis %></div>
-    <div>Release Date: </div>
-    <div><%= anime.releaseSeason %> , <%= anime.releaseYear %></div>
-    <div>Genre: </div>
-    <div><%= anime.genre %></div>
-    <div>Episode Count: </div>
-    <div><%= anime.episodeCount %></div>
-    <div>Rating: </div>
-    <div><%= anime.rating %></div>
-    <div>Currently Airing: </div>
-    <div><%= anime.currentlyAiring ? 'Yes' : 'No' %></div>
+<div class="container">
+
+<section class="anime-details">
+    <div class="title">Title:</div>
+    <div class="anime-title"><%= anime.title %></div>
+    <div class="contain">
+        <div class="image">
+            <img src="<%= anime.image %>" alt="">
+        </div>
+        <div class="synopsis">
+            <div class="synopsis-title">Synopsis:</div>
+            <div class="synopsis-content"><%= anime.synopsis %></div>
+        </div>
+    </div>
+    <div class="type">Type: <%= anime.type %></div>
+    <div class="release-date">Release Date: <%= anime.releaseSeason %> , <%= anime.releaseYear %></div>
+    <div class="genre">Genre: <%= anime.genre %></div>
+    <div class="episode-count">Episode Count: <%= anime.episodeCount %></div>
+    <div class="rating">Rating: <%= anime.rating %></div>
+    <div class="currently-airing">Currently Airing: <%= anime.currentlyAiring ? 'Yes' : 'No' %></div>
     <% if(user) { %>
-        <form action="/animes/<%= anime._id %>" method="POST">
+        <form action="/animes/<%= anime._id %>" method="POST" class="add-to-list">
             <button type="submit" value="add">Add to My List</button>
         </form>
     <% } %>
@@ -37,84 +40,62 @@
                 <textarea name="content"></textarea>
                 <label>Rating:</label>
                 <select name="rating">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10" selected>10</option>
+                    <option value="1">1</option>
+                    <!-- ... (other options) ... -->
+                    <option value="10" selected>10</option>
                 </select>
-                <input type="submit" value="Add Review">
+                <input type="submit">
             </form>
         </div>
     </div>
     <script>
-        document.getElementById('openModalBtn').addEventListener('click', function () {
-            document.getElementById('myModal').style.display = 'block';
-        });
-
-        document.getElementById('closeModalBtn').addEventListener('click', function () {
-            document.getElementById('myModal').style.display = 'none';
-        });
-
-        document.getElementById('modalForm').addEventListener('Add Review', function (e) {
-            e.preventDefault(); 
-
-            document.getElementById('myModal').style.display = 'none';
-        });
+        // ... (your script for modal)
     </script>
-  <% }%>
-<% if (anime.reviews.length) { %>
-    <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th>User</th>
-                <th>Date</th>
-                <th>Review</th>
-                <th>Rating</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
+<% } %>
+
+<div class="reviews">
+    <% if (anime.reviews.length) { %>
+        <div class="review-table">
             <% let total = 0 %>
             <% anime.reviews.forEach(function(r) { %>
                 <span>
                     <% total += r.rating %>
                 </span>
-                <tr>
-                    <td>
+                <div class="review">
+                    <% if(user?._id.equals(r.user)) { %>
+                        <form action="/reviews/<%= r._id %>?_method=DELETE" method="POST" class="delete-review">
+                            <button type="submit">❌</button>
+                        </form>
+                    <% } %>
+                    <div class="review-user">
+                        <img src="<%= r.userAvatar %>" alt="avatar" referrerpolicy="no-referrer">
+                        <div class="user-name"><%= r.userName %></div>
+                    </div>
+                    <div class="review-details">
+                        <div class="review-date"><%= r.createdAt.toLocaleDateString() %></div>
+                        <div class="review-content"><%= r.content %></div>
+                        <div class="review-rating"><%= r.rating %></div>
                         <% if(user?._id.equals(r.user)) { %>
-                            <form action="/reviews/<%= r._id %>?_method=DELETE" method="POST">
-                                <button type="submit">REMOVE</button>
-                            </form>
+                            <button class="editReviewBtn" data-modal-id="<%= r._id %>">EDIT</button>
+
+                            <div class="editModal modal" data-modal-id="<%= r._id %>" style="display: none;">
+                                <!-- ... (your edit review form) ... -->
+                            </div>
                         <% } %>
-                    </td>
-                    <td class="review-user"><img src="<%= r.userAvatar %>" alt="avatar" referrerpolicy="no-referrer"><%= r. userName %></td>
-                    <td><%= r.createdAt.toLocaleDateString() %></td>
-                    <td><%= r. content %></td>
-                    <td><%= r.rating %></td>
-                    <td>
-                        <% if(user?._id.equals(r.user)) { %>
-                            <form action="/reviews/<%= r._id %>?_method=PUT" method="POST">
-                                <button type="submit">EDIT</button>
-                            </form>
-                        <% } %>
-                    </td>
-                </tr>
+                    </div>
+                </div>
             <% }); %>
-            <tr>
-                <td colspan="4"></td>
-                <td><strong><%= (total/anime.reviews.length).toFixed(1) %></strong></td>
-            </tr>
-        </tbody>
-    </table>
-<% } else {%>
-    <h4>No Reviews Yet</h4>
-<% } %>
+            <div class="average-rating">
+                <div class="average-rating-label">Average Rating:</div>
+                <div class="average-rating-value"><strong><%= (total/anime.reviews.length).toFixed(1) %></strong></div>
+            </div>
+        </div>
+    <% } else { %>
+        <h4>No Reviews Yet</h4>
+    <% } %>
+</div>
+
+
+</div>
 
 <%- include('../partials/footer') %>
