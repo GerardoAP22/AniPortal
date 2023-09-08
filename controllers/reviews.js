@@ -3,6 +3,7 @@ const Anime = require('../models/anime');
 module.exports = {
   create,
   delete: deleteReview,
+  put: editReview,
 };
 
 async function create(req, res) {
@@ -23,6 +24,7 @@ async function create(req, res) {
 
 async function deleteReview(req, res) {
   try {
+    console.log('req.params.id');
     const anime = await Anime.findOne({ 'reviews._id': req.params.id, 'reviews.user': req.user._id });
     if (!anime) return res.redirect('/animes');
     anime.reviews.remove(req.params.id);
@@ -31,4 +33,8 @@ async function deleteReview(req, res) {
     } catch(err) {
     console.log(err);
   }
+}
+
+async function editReview(req, res) {
+
 }

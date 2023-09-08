@@ -26,30 +26,53 @@
 
 <h2>Reviews</h2>
 <% if (user) { %>
-    <form id="add-review-form" method="POST"
-      action="/animes/<%= anime._id %>/reviews">
-      <label>Review:</label>
-      <textarea name="content"></textarea>
-      <label>Rating:</label>
-      <select name="rating">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10" selected>10</option>
-      </select>
-      <input type="submit" value="Add Review">
-  </form>
+    <button id="openModalBtn">Add Review</button>
+
+    <div id="myModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <h2>Add Review: </h2>
+            <form id="modalForm" method="POST" action="/animes/<%= anime._id %>/reviews">
+                <label>Review:</label>
+                <textarea name="content"></textarea>
+                <label>Rating:</label>
+                <select name="rating">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10" selected>10</option>
+                </select>
+                <input type="submit" value="Add Review">
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('openModalBtn').addEventListener('click', function () {
+            document.getElementById('myModal').style.display = 'block';
+        });
+
+        document.getElementById('closeModalBtn').addEventListener('click', function () {
+            document.getElementById('myModal').style.display = 'none';
+        });
+
+        document.getElementById('modalForm').addEventListener('Add Review', function (e) {
+            e.preventDefault(); 
+
+            document.getElementById('myModal').style.display = 'none';
+        });
+    </script>
   <% }%>
 <% if (anime.reviews.length) { %>
     <table>
         <thead>
             <tr>
+                <th></th>
                 <th>User</th>
                 <th>Date</th>
                 <th>Review</th>
@@ -60,12 +83,10 @@
         <tbody>
             <% let total = 0 %>
             <% anime.reviews.forEach(function(r) { %>
-                <% total += r.rating %>
+                <span>
+                    <% total += r.rating %>
+                </span>
                 <tr>
-                    <td class="review-user"><img src="<%= r.userAvatar %>" alt="avatar" referrerpolicy="no-referrer"><%= r. userName %></td>
-                    <td><%= r.createdAt.toLocaleDateString() %></td>
-                    <td><%= r. content %></td>
-                    <td><%= r.rating %></td>
                     <td>
                         <% if(user?._id.equals(r.user)) { %>
                             <form action="/reviews/<%= r._id %>?_method=DELETE" method="POST">
@@ -73,10 +94,21 @@
                             </form>
                         <% } %>
                     </td>
+                    <td class="review-user"><img src="<%= r.userAvatar %>" alt="avatar" referrerpolicy="no-referrer"><%= r. userName %></td>
+                    <td><%= r.createdAt.toLocaleDateString() %></td>
+                    <td><%= r. content %></td>
+                    <td><%= r.rating %></td>
+                    <td>
+                        <% if(user?._id.equals(r.user)) { %>
+                            <form action="/reviews/<%= r._id %>?_method=PUT" method="POST">
+                                <button type="submit">EDIT</button>
+                            </form>
+                        <% } %>
+                    </td>
                 </tr>
             <% }); %>
             <tr>
-                <td colspan="3"></td>
+                <td colspan="4"></td>
                 <td><strong><%= (total/anime.reviews.length).toFixed(1) %></strong></td>
             </tr>
         </tbody>

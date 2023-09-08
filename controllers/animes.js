@@ -15,8 +15,6 @@ async function index(req, res) {
 
 async function show(req, res) {
     const anime = await Anime.findById(req.params.id);
-    console.log(req.params.id);
-    console.log(anime);
     res.render('animes/show', { title: 'Anime Detail', anime }); 
 }
 
