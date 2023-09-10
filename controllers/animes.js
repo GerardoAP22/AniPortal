@@ -10,12 +10,12 @@ module.exports = {
 
 async function index(req, res) {
     const animes = await Anime.find({});
-    res.render('animes/index', { title: 'All Animes', animes });
+    res.render('animes/index', { animes });
 }
 
 async function show(req, res) {
     const anime = await Anime.findById(req.params.id);
-    res.render('animes/show', { title: 'Anime Detail', anime }); 
+    res.render('animes/show', { anime }); 
 }
 
 async function addToList(req, res) {
@@ -26,7 +26,7 @@ async function addToList(req, res) {
         user.mylist.push(anime._id);
         await user.save();
     }
-    res.render('animes/show', { title: 'Anime Detail', anime });
+    res.render('animes/show', { anime });
 }
 
 async function deleteFromList(req, res) {

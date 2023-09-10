@@ -1,34 +1,27 @@
 <%- include('../partials/header') %>
 
-<table>
-    <thead>
-        <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Season</th>
-            <th>Release<br>Year</th>
-            <th>Genre</th>
-            <th>Currently<br>Airing</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <% user.mylist.forEach(function(ani) { %>
-            <tr>
-                <td>
-                    <form action="animes/<%= ani._id %>?_method=DELETE" method="POST">
-                        <button type="submit">REMOVE</button>
-                    </form>
-                </td>
-                <td><%= ani.title %></td>
-                <td><%= ani.releaseSeason %></td>
-                <td><%= ani.releaseYear %></td>
-                <td><%= ani.genre %></td>
-                <td><%= ani.currentlyAiring ? 'Yes' : 'No' %></td>
-                <td><a href="/animes/<%= ani._id %>">DETAILS</a></td>
-            </tr>
-        <% }); %>
-    </tbody>
-</table>
+<div class="personal-anime-list">
+    <% user.mylist.forEach(function(ani) { %>
+      <div class="personal-anime-row">
+        <form class="personal-remove-form" action="animes/<%= ani._id %>?_method=DELETE" method="POST">
+          <button type="submit" class="personal-remove-button">REMOVE</button>
+        </form>
+        <div class="personal-anime-details">
+          <div class="personal-anime-image">
+            <img src="<%= ani.image %>" alt="<%= ani.title %>">
+          </div>
+          <div class="personal-anime-info">
+            <div class="personal-anime-title"><%= ani.title %></div>
+            <div class="personal-anime-season"><%= ani.releaseSeason %></div>
+            <div class="personal-anime-year"><%= ani.releaseYear %></div>
+            <div class="personal-anime-genre"><%= ani.genre %></div>
+            <div class="personal-anime-airing"><%= ani.currentlyAiring ? 'Currently Airing' : 'Not Airing' %></div>
+          </div>
+          <a class="personal-details-button" href="/animes/<%= ani._id %>">DETAILS</a>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+  
 
 <%- include('../partials/footer') %>

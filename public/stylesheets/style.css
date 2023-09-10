@@ -189,6 +189,18 @@ header {
     font-size: 18px;
 }
 
+.personal-anime-title,
+.personal-anime-season,
+.personal-anime-year,
+.personal-anime-genre,
+.personal-anime-airing,
+.review-date,
+.review-content,
+.review-rating {
+  display: inline-block; /* Display these elements on the same line */
+  margin-right: 10px; /* Add spacing between elements */
+}
+
 .average-rating {
     display: flex;
     justify-content: flex-end;
@@ -235,20 +247,19 @@ header {
 }
 
 /* Style the "Add Review" button */
-#openModalBtn {
-    background-color: #007bff;
+#openModalBtn, .add-list-btn, .editReviewBtn {
+    background-color: rgba(22, 55, 138, 1);
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    margin: 5px;
 }
 
-#openModalBtn:hover {
+#openModalBtn:hover, .add-list-btn:hover, .editReviewBtn:hover {
     background-color: #0056b3;
 }
-
-/* Additional styles for form elements can be added here */
 
 .contain {
   display: flex;
@@ -260,18 +271,6 @@ header {
   margin: 0 auto;
 }
 
-.main-title {
-  display: flex;
-  justify-content: center;
-}
-
-.blue-accent-left .blue-accent-right {
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background-color: #007bff; /* Blue accent color on the left */
-}
 
 .home-container {
   display: flex;
@@ -286,4 +285,132 @@ header {
   padding: 30px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   text-align: center;
+  height: 90vh;
 }
+
+#home-back {
+  background-image: url("../images/animebg.jpg");
+}
+#thank-you {
+  height: 40vh;
+  width: 40vw;
+}
+
+.all-anime-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.all-anime-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  width: calc(33.33% - 20px); /* Adjust the width as needed */
+  box-sizing: border-box;
+}
+
+.all-anime-details {
+  margin-bottom: 10px;
+}
+
+.all-anime-title {
+  font-weight: bold;
+}
+
+.all-info-label {
+  font-weight: bold;
+}
+
+.all-anime-link a {
+  text-decoration: none;
+  background-color: rgba(22, 55, 138, 1);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.all-anime-link a:hover {
+  background-color: rgba(22, 55, 138, 1);
+}
+
+.all-anime-image {
+  margin-right: 20px;
+}
+
+.all-anime-image img {
+  max-width: 50%;
+  height: auto;
+}
+
+/* Style for the container of anime rows */
+.personal-anime-list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Style for each anime row */
+.personal-anime-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+/* Style for the container of anime rows */
+.personal-anime-list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Style for each anime row */
+.personal-anime-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px;
+}
+
+/* Style for the REMOVE button */
+.personal-remove-form {
+  margin-right: 10px;
+}
+
+.personal-remove-button {
+  background-color: #FF0000;
+  color: #FFFFFF;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Style for the anime image */
+.personal-anime-image img {
+  max-width: 50px;
+  height: auto;
+}
+
+/* Style for anime information */
+.personal-anime-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-grow: 1;
+  margin-left: 10px; /* Add some spacing between image and info */
+}
+
+.personal-anime-title {
+  font-weight: bold;
+}
+
+/* Style for the DETAILS button */
+.personal-details-button {
+  background-color: rgba(22, 55, 138, 1);
+  color: #FFFFFF;
+  border: none;
+  padding: 5px 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+

@@ -1,29 +1,48 @@
 <%- include('../partials/header') %>
 
-<table>
-    <h3>Anime Search</h3>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Season</th>
-            <th>Release<br>Year</th>
-            <th>Genre</th>
-            <th>Currently<br>Airing</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <% animes.forEach(function(ani) { %>
-            <tr>
-                <td><%= ani.title %></td>
-                <td><%= ani.releaseSeason %></td>
-                <td><%= ani.releaseYear %></td>
-                <td><%= ani.genre %></td>
-                <td><%= ani.currentlyAiring ? 'Yes' : 'No' %></td>
-                <td><a href="/animes/<%= ani._id %>">DETAILS</a></td>
-            </tr>
-        <% }); %>
-    </tbody>
-</table>
+    <main>
+        <div class="all-anime-list">
+            <% animes.forEach(function(ani) { %>
+                <div class="all-anime-item">
+                    <div class="all-anime-details">
+                        <p class="all-anime-title">
+                            <%= ani.title %>
+                        </p>
+                        <div class="all-anime-image">
+                            <p><img src="<%= ani.image %>" alt="<%= ani.title %> Image"></p>
+                        </div>
+                        <p class="all-anime-info">
+                            <span class="all-info-label">Season:</span>
+                            <span class="all-info-value">
+                                <%= ani.releaseSeason %>
+                            </span>
+                        </p>
+                        <p class="all-anime-info">
+                            <span class="all-info-label">Release Year:</span>
+                            <span class="all-info-value">
+                                <%= ani.releaseYear %>
+                            </span>
+                        </p>
+                        <p class="all-anime-info">
+                            <span class="all-info-label">Genre:</span>
+                            <span class="all-info-value">
+                                <%= ani.genre %>
+                            </span>
+                        </p>
+                        <p class="all-anime-info">
+                            <span class="all-info-label">Currently Airing:</span>
+                            <span class="all-info-value">
+                                <%= ani.currentlyAiring ? 'Yes' : 'No' %>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="all-anime-link">
+                        <a href="/animes/<%= ani._id %>">DETAILS</a>
+                    </div>
+                </div>
+                <% }); %>
+        </div>
+    </main>
 
-<%- include('../partials/footer') %>
+
+    <%- include('../partials/footer') %>
