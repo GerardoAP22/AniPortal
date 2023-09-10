@@ -16,16 +16,16 @@ My app is called AniPortal. It's a site that currently lists 50 anime shows. Use
 
 ## Screenhots
 #### Home Page
-![image](https://imgur.com/urdIEdO)
+<img src="https://imgur.com/urdIEdO">
 
 #### All Anime Page
-![image](https://imgur.com/ZCAVfKt)
+<img src="https://imgur.com/ZCAVfKt">
 
 #### Anime Details Page
-![image](https://imgur.com/5llt9a1)
+<img src="https://imgur.com/5llt9a1">
 
 #### My List Page
-![image](https://imgur.com/wsahm6T)
+<img src="https://imgur.com/wsahm6T">
 
 ## Getting Started
 - [Heroku](https://aniportal-117465ef4fc0.herokuapp.com/)
