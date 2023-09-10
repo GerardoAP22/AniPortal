@@ -8,15 +8,33 @@
   <title><%= title %></title>
 </head>
 <body>
-  <nav>
-    <a href="/">HOME PAGE</a>
-    <a href="/animes">ALL ANIME</a>
-    <% if (user) { %>
+  <nav id="navbar">
+    <img src="../images/aniportal.png" class="logo" alt="Your Logo">
+    <div id="navbar-links">
+      <% if (user) { %>
+        <a href="/">HOME PAGE</a>
+        <a href="/animes">ALL ANIME</a>
         <a href="/users">MY LIST</a>
         <a href="/logout">LOG OUT</a>
-    <% } else { %>
+      <% } else { %>
+        <a href="/">HOME PAGE</a>
+        <a href="/animes">ALL ANIME</a>
         <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
-    <% } %>
+      <% } %>
+    </div>
   </nav>
-  <!-- <main> -->
-    <h1><%= title %></h1>
+  <script>
+    window.addEventListener("scroll", function () {
+        var navbar = document.getElementById("navbar");
+        if (window.scrollY > 75) { 
+            navbar.style.backgroundColor = "rgba(255, 255, 255, 0)";
+            navbar.style.opacity = "0";
+        } else {
+            navbar.style.backgroundColor = "rgba(22, 55, 138, 1)";
+            navbar.style.opacity = "1";
+        }
+    });
+  </script>
+
+  <main>
+    <h1 class="main-title"><%= title %></h1>

@@ -41,7 +41,14 @@
                 <label>Rating:</label>
                 <select name="rating">
                     <option value="1">1</option>
-                    <!-- ... (other options) ... -->
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
                     <option value="10" selected>10</option>
                 </select>
                 <input type="submit">
@@ -49,7 +56,17 @@
         </div>
     </div>
     <script>
-        // ... (your script for modal)
+        document.getElementById('openModalBtn').addEventListener('click', function () {
+            document.getElementById('myModal').style.display = 'block';
+        });
+
+        document.getElementById('closeModalBtn').addEventListener('click', function () {
+            document.getElementById('myModal').style.display = 'none';
+        });
+
+        document.getElementById('modalForm').addEventListener('submit', function (e) {
+            document.getElementById('myModal').style.display = 'none';
+        });
     </script>
 <% } %>
 
@@ -79,8 +96,54 @@
                             <button class="editReviewBtn" data-modal-id="<%= r._id %>">EDIT</button>
 
                             <div class="editModal modal" data-modal-id="<%= r._id %>" style="display: none;">
-                                <!-- ... (your edit review form) ... -->
+                                <div class="modal-content">
+                                    <span class="close closeEditModalBtn">&times;</span>
+                                    <h2>Edit Review: </h2>
+                                    <form class="editModalForm" action="/reviews/<%= r._id %>?_method=PUT" method="POST">
+                                        <label>Review:</label>
+                                        <textarea name="content"><%= r.content %></textarea>
+                                        <label>Rating:</label>
+                                        <select name="rating">
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                          <option value="6">6</option>
+                                          <option value="7">7</option>
+                                          <option value="8">8</option>
+                                          <option value="9">9</option>
+                                          <option value="10" selected>10</option>
+                                        </select>
+                                        <input type="submit">
+                                    </form>
+                                </div>
                             </div>
+                            <script>
+                                document.querySelectorAll('.editReviewBtn').forEach(function(btn) {
+                                        const modalId = btn.getAttribute('data-modal-id');
+                                        
+                                        btn.addEventListener('click', function() {
+                                            document.querySelector(`.editModal[data-modal-id="${modalId}"]`).style.display = 'block';
+                                        });
+                                    });
+
+                                    document.querySelectorAll('.closeEditModalBtn').forEach(function(btn) {
+                                        const modalId = btn.closest('.editModal').getAttribute('data-modal-id');
+
+                                        btn.addEventListener('click', function() {
+                                            document.querySelector(`.editModal[data-modal-id="${modalId}"]`).style.display = 'none';
+                                        });
+                                    });
+
+                                    document.querySelectorAll('.editModalForm').forEach(function(form) {
+                                        form.addEventListener('submit', function(e) {
+                                        
+                                            const modalId = form.closest('.editModal').getAttribute('data-modal-id');
+                                            document.querySelector(`.editModal[data-modal-id="${modalId}"]`).style.display = 'none';
+                                    });
+                                });
+                            </script>
                         <% } %>
                     </div>
                 </div>
